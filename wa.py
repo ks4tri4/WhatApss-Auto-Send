@@ -69,7 +69,7 @@ while (perintah != "exit"):
 
     if(perintah == "baca"):
         nama = input("Kontak yang akan diBaca Pesannya pesan: ")
-        pilihkontak(nama, driver)
+        pilihkontak(nama)
         for i in range(1, 3):
             driver.execute_script(
                 "window.scrollTo(0, document.body.scrollHeight);")
