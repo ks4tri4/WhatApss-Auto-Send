@@ -14,6 +14,13 @@ driver = webdriver.Chrome(chrome_options=chrome_options)
 driver.get("https://web.whatsapp.com")
 wait = WebDriverWait(driver, 10)
 wait5 = WebDriverWait(driver, 5)
+
+
+def pilihkontak(nama, driver):
+    user = driver.find_element_by_xpath('//span[@title = "{}"]'.format(nama))
+    user.click()
+
+
 print("Scan QR Code, And then Enter")
 print("Logged In")
 perintah = ""
@@ -27,9 +34,7 @@ while (perintah != "exit"):
     if (perintah == "kirim"):
         nama = input("Kontak yang akan dikirim pesan: ")
         try:
-            user = driver.find_element_by_xpath(
-                '//span[@title = "{}"]'.format(nama))
-            user.click()
+            pilihkontak(nama, driver)
             # Select the Input Box
             inp_xpath = "//div[@data-tab='6']"
             input_box = wait.until(
@@ -56,9 +61,7 @@ while (perintah != "exit"):
 
     if(perintah == "baca"):
         nama = input("Kontak yang akan diBaca Pesannya pesan: ")
-        person = driver.find_element_by_xpath(
-            '//span[@title = "{}"]'.format(nama))
-        person.click()
+        pilihkontak(nama, driver)
         for i in range(1, 3):
             driver.execute_script(
                 "window.scrollTo(0, document.body.scrollHeight);")
